@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
@@ -22,20 +21,20 @@ export default function CTASection() {
               {/* Decorative elements */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2" />
-              
+
               <div className="relative z-10">
                 <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center mb-6">
                   <Sparkles className="w-8 h-8 text-white" />
                 </div>
-                
+
                 <h3 className="text-3xl font-bold text-white mb-4">
                   Sell Your Car<br />in 24 Hours
                 </h3>
                 <p className="text-white/80 mb-8 text-lg leading-relaxed">
-                  Get an instant AI valuation and connect with serious buyers. 
+                  Get an instant AI valuation and connect with serious buyers.
                   No listing fees, no hassle.
                 </p>
-                
+
                 <Link to={createPageUrl('SellCar')}>
                   <Button size="lg" className="bg-white text-emerald-600 hover:bg-gray-100 font-semibold group/btn">
                     Get Free Valuation
@@ -45,7 +44,7 @@ export default function CTASection() {
               </div>
             </div>
           </motion.div>
-          
+
           {/* Browse Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -59,20 +58,20 @@ export default function CTASection() {
               {/* Decorative elements */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2" />
-              
+
               <div className="relative z-10">
                 <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center mb-6">
                   <Car className="w-8 h-8 text-white" />
                 </div>
-                
+
                 <h3 className="text-3xl font-bold text-white mb-4">
                   Find Your<br />Dream Ride
                 </h3>
                 <p className="text-white/80 mb-8 text-lg leading-relaxed">
-                  Browse thousands of verified vehicles. Filter by make, model, 
+                  Browse thousands of verified vehicles. Filter by make, model,
                   price, and more.
                 </p>
-                
+
                 <Link to={createPageUrl('Browse')}>
                   <Button size="lg" className="bg-white text-emerald-600 hover:bg-gray-100 font-semibold group/btn">
                     Browse Cars

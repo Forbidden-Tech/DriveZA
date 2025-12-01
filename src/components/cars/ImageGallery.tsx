@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ChevronLeft, ChevronRight, X, Expand } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -6,19 +6,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function ImageGallery({ images = [] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const defaultImages = [
     'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200',
     'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200',
     'https://images.unsplash.com/photo-1542362567-b07e54358753?w=1200'
   ];
-  
+
   const galleryImages = images.length > 0 ? images : defaultImages;
-  
+
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
   };
-  
+
   const goToNext = () => {
     setCurrentIndex((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1));
   };
@@ -40,10 +40,10 @@ export default function ImageGallery({ images = [] }) {
               transition={{ duration: 0.3 }}
             />
           </AnimatePresence>
-          
+
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          
+
           {/* Navigation Arrows */}
           {galleryImages.length > 1 && (
             <>
@@ -61,7 +61,7 @@ export default function ImageGallery({ images = [] }) {
               </button>
             </>
           )}
-          
+
           {/* Expand Button */}
           <button
             onClick={() => setIsOpen(true)}
@@ -69,13 +69,13 @@ export default function ImageGallery({ images = [] }) {
           >
             <Expand className="w-5 h-5 text-white" />
           </button>
-          
+
           {/* Image Counter */}
           <div className="absolute bottom-4 right-4 px-4 py-2 bg-black/40 backdrop-blur-xl rounded-full text-white text-sm font-medium">
             {currentIndex + 1} / {galleryImages.length}
           </div>
         </div>
-        
+
         {/* Thumbnails */}
         {galleryImages.length > 1 && (
           <div className="grid grid-cols-6 gap-2">
@@ -83,11 +83,10 @@ export default function ImageGallery({ images = [] }) {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`relative aspect-square rounded-xl overflow-hidden transition-all duration-200 ${
-                  index === currentIndex 
-                    ? 'ring-2 ring-emerald-500 ring-offset-2' 
+                className={`relative aspect-square rounded-xl overflow-hidden transition-all duration-200 ${index === currentIndex
+                    ? 'ring-2 ring-emerald-500 ring-offset-2'
                     : 'opacity-60 hover:opacity-100'
-                }`}
+                  }`}
               >
                 <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
                 {index === 5 && galleryImages.length > 6 && (
@@ -100,7 +99,7 @@ export default function ImageGallery({ images = [] }) {
           </div>
         )}
       </div>
-      
+
       {/* Fullscreen Dialog */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="max-w-7xl w-full h-[90vh] p-0 bg-black/95 border-0 rounded-3xl overflow-hidden">
@@ -111,7 +110,7 @@ export default function ImageGallery({ images = [] }) {
             >
               <X className="w-6 h-6 text-white" />
             </button>
-            
+
             <AnimatePresence mode="wait">
               <motion.img
                 key={currentIndex}
@@ -124,7 +123,7 @@ export default function ImageGallery({ images = [] }) {
                 transition={{ duration: 0.2 }}
               />
             </AnimatePresence>
-            
+
             {galleryImages.length > 1 && (
               <>
                 <button
@@ -141,16 +140,15 @@ export default function ImageGallery({ images = [] }) {
                 </button>
               </>
             )}
-            
+
             {/* Thumbnails in fullscreen */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 bg-black/40 backdrop-blur-xl p-3 rounded-2xl">
               {galleryImages.map((img, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-16 h-12 rounded-lg overflow-hidden transition-all ${
-                    index === currentIndex ? 'ring-2 ring-white' : 'opacity-50 hover:opacity-100'
-                  }`}
+                  className={`w-16 h-12 rounded-lg overflow-hidden transition-all ${index === currentIndex ? 'ring-2 ring-white' : 'opacity-50 hover:opacity-100'
+                    }`}
                 >
                   <img src={img} alt={`Thumb ${index + 1}`} className="w-full h-full object-cover" />
                 </button>

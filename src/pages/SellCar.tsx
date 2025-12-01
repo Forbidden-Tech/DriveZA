@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
@@ -11,14 +12,14 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
-import { 
-  ArrowLeft, ArrowRight, Car, Camera, User, CheckCircle, 
+import {
+  ArrowLeft, ArrowRight, Car, Camera, User, CheckCircle,
   Loader2, X, Plus, Sparkles, Zap
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const MAKES = [
-  "Toyota", "Volkswagen", "Ford", "BMW", "Mercedes-Benz", "Audi", "Honda", 
+  "Toyota", "Volkswagen", "Ford", "BMW", "Mercedes-Benz", "Audi", "Honda",
   "Nissan", "Hyundai", "Kia", "Mazda", "Suzuki", "Renault", "Chevrolet",
   "Jeep", "Land Rover", "Porsche", "Volvo", "Isuzu", "Mitsubishi", "Other"
 ];
@@ -141,13 +142,13 @@ export default function SellCar() {
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-[128px]" />
           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-[128px]" />
         </div>
-        
+
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <Link to={createPageUrl('Home')} className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8">
             <ArrowLeft className="w-4 h-4" />
             <span>Back</span>
           </Link>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -156,7 +157,7 @@ export default function SellCar() {
               <Zap className="w-4 h-4 text-amber-400" />
               <span className="text-sm text-gray-300">Sell in under 5 minutes</span>
             </div>
-            
+
             <h1 className="text-4xl font-bold text-white mb-4">List Your Car</h1>
             <p className="text-gray-400 text-lg">Reach thousands of buyers. It's free and takes just a few minutes.</p>
           </motion.div>
@@ -171,11 +172,10 @@ export default function SellCar() {
               {steps.map((s, i) => (
                 <React.Fragment key={s.num}>
                   <div className="flex items-center gap-3">
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${
-                      step >= s.num 
-                        ? 'bg-gradient-to-br from-emerald-500 to-teal-500 text-white' 
+                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${step >= s.num
+                        ? 'bg-gradient-to-br from-emerald-500 to-teal-500 text-white'
                         : 'bg-white/5 text-gray-500 border border-white/10'
-                    }`}>
+                      }`}>
                       {step > s.num ? <CheckCircle className="w-6 h-6" /> : <s.icon className="w-6 h-6" />}
                     </div>
                     <span className={`hidden sm:block font-medium ${step >= s.num ? 'text-white' : 'text-gray-500'}`}>
@@ -199,7 +199,7 @@ export default function SellCar() {
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-white mb-2">Vehicle Information</h2>
                   <p className="text-gray-400 mb-8">Tell us about your car</p>
-                  
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {[
                       { label: 'Make', field: 'make', type: 'select', options: MAKES },
@@ -228,13 +228,13 @@ export default function SellCar() {
                               <SelectValue placeholder="Select year" />
                             </SelectTrigger>
                             <SelectContent>
-                              {Array.from({length: 30}, (_, i) => 2024 - i).map(year => (
+                              {Array.from({ length: 30 }, (_, i) => 2024 - i).map(year => (
                                 <SelectItem key={year} value={year.toString()}>{year}</SelectItem>
                               ))}
                             </SelectContent>
                           </Select>
                         ) : (
-                          <Input 
+                          <Input
                             value={formData[item.field as keyof FormData] as string}
                             onChange={(e) => handleInputChange(item.field as keyof FormData, e.target.value)}
                             placeholder={item.placeholder}
@@ -246,8 +246,8 @@ export default function SellCar() {
                   </div>
 
                   <div className="flex justify-end pt-8">
-                    <Button 
-                      onClick={() => setStep(2)} 
+                    <Button
+                      onClick={() => setStep(2)}
                       disabled={!canProceed()}
                       className="h-12 px-8 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-semibold rounded-xl"
                     >
@@ -267,7 +267,7 @@ export default function SellCar() {
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-white mb-2">Photos & Pricing</h2>
                   <p className="text-gray-400 mb-8">Add photos and set your price</p>
-                  
+
                   {/* Image Upload */}
                   <div className="mb-8">
                     <Label className="text-gray-300 mb-3 block">Photos (up to 10)</Label>
@@ -297,12 +297,12 @@ export default function SellCar() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                     <div className="space-y-2">
                       <Label className="text-gray-300">Price (ZAR) *</Label>
-                      <Input type="number" value={formData.price} onChange={(e) => handleInputChange('price', e.target.value)} 
+                      <Input type="number" value={formData.price} onChange={(e) => handleInputChange('price', e.target.value)}
                         placeholder="e.g. 250000" className="h-12 bg-white/5 border-white/10 text-white placeholder:text-gray-500 rounded-xl" />
                     </div>
                     <div className="space-y-2">
                       <Label className="text-gray-300">Mileage (km) *</Label>
-                      <Input type="number" value={formData.mileage} onChange={(e) => handleInputChange('mileage', e.target.value)} 
+                      <Input type="number" value={formData.mileage} onChange={(e) => handleInputChange('mileage', e.target.value)}
                         placeholder="e.g. 85000" className="h-12 bg-white/5 border-white/10 text-white placeholder:text-gray-500 rounded-xl" />
                     </div>
                     <div className="space-y-2">
@@ -318,7 +318,7 @@ export default function SellCar() {
                     </div>
                     <div className="space-y-2">
                       <Label className="text-gray-300">City</Label>
-                      <Input value={formData.city} onChange={(e) => handleInputChange('city', e.target.value)} 
+                      <Input value={formData.city} onChange={(e) => handleInputChange('city', e.target.value)}
                         placeholder="e.g. Johannesburg" className="h-12 bg-white/5 border-white/10 text-white placeholder:text-gray-500 rounded-xl" />
                     </div>
                   </div>
@@ -329,7 +329,7 @@ export default function SellCar() {
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                       {FEATURES_LIST.map(feature => (
                         <div key={feature} className="flex items-center space-x-2">
-                          <Checkbox id={feature} checked={formData.features.includes(feature)} onCheckedChange={() => handleFeatureToggle(feature as string)} 
+                          <Checkbox id={feature} checked={formData.features.includes(feature)} onCheckedChange={() => handleFeatureToggle(feature as string)}
                             className="border-white/20 data-[state=checked]:bg-emerald-500 data-[state=checked]:border-emerald-500" />
                           <label htmlFor={feature} className="text-sm text-gray-300 cursor-pointer">{feature}</label>
                         </div>
@@ -365,11 +365,11 @@ export default function SellCar() {
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-white mb-2">Contact Information</h2>
                   <p className="text-gray-400 mb-8">How can buyers reach you?</p>
-                  
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label className="text-gray-300">Your Name *</Label>
-                      <Input value={formData.seller_name} onChange={(e) => handleInputChange('seller_name', e.target.value)} 
+                      <Input value={formData.seller_name} onChange={(e) => handleInputChange('seller_name', e.target.value)}
                         className="h-12 bg-white/5 border-white/10 text-white rounded-xl" />
                     </div>
                     <div className="space-y-2">
@@ -386,12 +386,12 @@ export default function SellCar() {
                     </div>
                     <div className="space-y-2">
                       <Label className="text-gray-300">Phone *</Label>
-                      <Input value={formData.seller_phone} onChange={(e) => handleInputChange('seller_phone', e.target.value)} 
+                      <Input value={formData.seller_phone} onChange={(e) => handleInputChange('seller_phone', e.target.value)}
                         placeholder="e.g. 082 123 4567" className="h-12 bg-white/5 border-white/10 text-white placeholder:text-gray-500 rounded-xl" />
                     </div>
                     <div className="space-y-2">
                       <Label className="text-gray-300">Email *</Label>
-                      <Input type="email" value={formData.seller_email} onChange={(e) => handleInputChange('seller_email', e.target.value)} 
+                      <Input type="email" value={formData.seller_email} onChange={(e) => handleInputChange('seller_email', e.target.value)}
                         className="h-12 bg-white/5 border-white/10 text-white rounded-xl" />
                     </div>
                   </div>

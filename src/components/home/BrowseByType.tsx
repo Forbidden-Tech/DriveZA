@@ -1,8 +1,6 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
-import { Car, Truck, CircleDot } from 'lucide-react';
 
 const bodyTypes = [
   {
@@ -56,7 +54,7 @@ export default function BrowseByType() {
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Shop by Style</h2>
           <p className="text-gray-600 text-lg">Find the perfect body type for your lifestyle</p>
         </motion.div>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {bodyTypes.map((type, index) => (
             <motion.div
@@ -66,14 +64,14 @@ export default function BrowseByType() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
             >
-              <Link 
+              <Link
                 to={createPageUrl(`Browse?bodyType=${type.name}`)}
                 className="group block"
               >
                 <div className="relative bg-white rounded-3xl p-6 text-center hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:-translate-y-2">
                   {/* Gradient overlay on hover */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${type.gradient} rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                  
+
                   <div className="relative z-10">
                     <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
                       {type.icon}

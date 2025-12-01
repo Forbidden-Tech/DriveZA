@@ -4,14 +4,14 @@ import { useQuery } from '@tanstack/react-query';
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, LayoutGrid, List, SlidersHorizontal, X, Search } from 'lucide-react';
+import { Loader2, LayoutGrid, List, X, Search } from 'lucide-react';
 import CarCard from '@/components/cars/CarCard';
 import CarFilters from '@/components/cars/CarFilters';
 import { motion } from 'framer-motion';
 
 export default function Browse() {
   const urlParams = new URLSearchParams(window.location.search);
-  
+
   const [filters, setFilters] = useState({
     make: urlParams.get('make') || '',
     model: urlParams.get('model') || '',
@@ -24,7 +24,7 @@ export default function Browse() {
     fuelType: '',
     province: ''
   });
-  
+
   const [sortBy, setSortBy] = useState('-created_date');
   const [viewMode, setViewMode] = useState('grid');
 
@@ -60,7 +60,7 @@ export default function Browse() {
   const resetFilters = () => {
     setFilters({
       make: '', model: '', minPrice: 0, maxPrice: 2000000,
-      yearFrom: null, yearTo: null, bodyType: '', 
+      yearFrom: null, yearTo: null, bodyType: '',
       transmission: '', fuelType: '', province: ''
     });
   };
@@ -91,24 +91,24 @@ export default function Browse() {
           </motion.div>
         </div>
       </div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Filters Sidebar */}
           <div className="lg:w-80 flex-shrink-0">
             <div className="bg-white rounded-3xl shadow-xl p-6 sticky top-28">
-              <CarFilters 
-                filters={filters} 
-                setFilters={setFilters} 
+              <CarFilters
+                filters={filters}
+                setFilters={setFilters}
                 onReset={resetFilters}
               />
             </div>
           </div>
-          
+
           {/* Results */}
           <div className="flex-1 pb-12">
             {/* Toolbar */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="bg-white rounded-2xl p-4 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm"
@@ -117,10 +117,10 @@ export default function Browse() {
                 <span className="text-sm text-gray-500">
                   <span className="font-semibold text-gray-900">{sortedCars.length}</span> results
                 </span>
-                
+
                 {activeFiltersCount > 0 && (
-                  <Badge 
-                    variant="secondary" 
+                  <Badge
+                    variant="secondary"
                     className="bg-emerald-100 text-emerald-600 hover:bg-emerald-200 cursor-pointer"
                     onClick={resetFilters}
                   >
@@ -129,7 +129,7 @@ export default function Browse() {
                   </Badge>
                 )}
               </div>
-              
+
               <div className="flex items-center gap-3 w-full sm:w-auto">
                 <Select value={sortBy} onValueChange={setSortBy}>
                   <SelectTrigger className="w-full sm:w-48 bg-gray-50 border-0">
@@ -143,7 +143,7 @@ export default function Browse() {
                     <SelectItem value="mileage">Mileage: Lowest</SelectItem>
                   </SelectContent>
                 </Select>
-                
+
                 <div className="hidden sm:flex border rounded-xl overflow-hidden bg-gray-50">
                   <button
                     onClick={() => setViewMode('grid')}
@@ -160,7 +160,7 @@ export default function Browse() {
                 </div>
               </div>
             </motion.div>
-            
+
             {/* Car Grid */}
             {isLoading ? (
               <div className="flex items-center justify-center py-20">
@@ -171,8 +171,8 @@ export default function Browse() {
               </div>
             ) : sortedCars.length > 0 ? (
               <div className={
-                viewMode === 'grid' 
-                  ? "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6" 
+                viewMode === 'grid'
+                  ? "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"
                   : "space-y-4"
               }>
                 {sortedCars.map((car, index) => (
