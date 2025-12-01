@@ -1,0 +1,159 @@
+{
+    "name": "Car",
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string",
+        "description": "Listing title"
+      },
+      "make": {
+        "type": "string",
+        "description": "Car manufacturer"
+      },
+      "model": {
+        "type": "string",
+        "description": "Car model"
+      },
+      "variant": {
+        "type": "string",
+        "description": "Model variant/trim"
+      },
+      "year": {
+        "type": "number",
+        "description": "Year of manufacture"
+      },
+      "price": {
+        "type": "number",
+        "description": "Price in ZAR"
+      },
+      "mileage": {
+        "type": "number",
+        "description": "Odometer reading in km"
+      },
+      "transmission": {
+        "type": "string",
+        "enum": [
+          "Manual",
+          "Automatic",
+          "Semi-Automatic"
+        ],
+        "description": "Transmission type"
+      },
+      "fuel_type": {
+        "type": "string",
+        "enum": [
+          "Petrol",
+          "Diesel",
+          "Hybrid",
+          "Electric"
+        ],
+        "description": "Fuel type"
+      },
+      "body_type": {
+        "type": "string",
+        "enum": [
+          "Sedan",
+          "Hatchback",
+          "SUV",
+          "Bakkie",
+          "Coupe",
+          "Convertible",
+          "Station Wagon",
+          "Van",
+          "Crossover"
+        ],
+        "description": "Body type"
+      },
+      "colour": {
+        "type": "string",
+        "description": "Exterior colour"
+      },
+      "province": {
+        "type": "string",
+        "enum": [
+          "Gauteng",
+          "Western Cape",
+          "KwaZulu-Natal",
+          "Eastern Cape",
+          "Free State",
+          "Limpopo",
+          "Mpumalanga",
+          "North West",
+          "Northern Cape"
+        ],
+        "description": "Province location"
+      },
+      "city": {
+        "type": "string",
+        "description": "City location"
+      },
+      "images": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Array of image URLs"
+      },
+      "description": {
+        "type": "string",
+        "description": "Detailed description"
+      },
+      "features": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of features"
+      },
+      "seller_name": {
+        "type": "string",
+        "description": "Seller name"
+      },
+      "seller_phone": {
+        "type": "string",
+        "description": "Seller contact number"
+      },
+      "seller_email": {
+        "type": "string",
+        "description": "Seller email"
+      },
+      "seller_type": {
+        "type": "string",
+        "enum": [
+          "Private",
+          "Dealer"
+        ],
+        "description": "Type of seller"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "approved",
+          "sold",
+          "rejected"
+        ],
+        "default": "pending",
+        "description": "Listing status"
+      },
+      "featured": {
+        "type": "boolean",
+        "default": false,
+        "description": "Featured listing"
+      },
+      "views": {
+        "type": "number",
+        "default": 0,
+        "description": "Number of views"
+      }
+    },
+    "required": [
+      "make",
+      "model",
+      "year",
+      "price",
+      "mileage",
+      "transmission",
+      "fuel_type"
+    ]
+  }
